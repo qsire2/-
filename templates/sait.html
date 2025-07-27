@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}">
+  <title>GameHub</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('https://cdn.cloudflare.steamstatic.com/steam/apps/730/page_bg_generated_v6b.jpg') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      color: #fff;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: -1;
+    }
+
+    header {
+      background-color: #111;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 4px solid #444;
+      border-radius: 0 0 20px 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 20px;
+      color: #fff;
+    }
+
+    .game-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+      justify-content: center;
+    }
+
+    .game-card {
+      background-color: rgba(0, 0, 0, 0.7);
+      width: 200px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      color: white;
+    }
+
+    .game-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .game-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .game-card p {
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>MyGame</h1>
+</header>
+
+<main class="game-list">
+  <a href="/stalker2">
+    <div class="game-card">
+      <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1643320/library_600x900_2x.jpg" alt="S.T.A.L.K.E.R. 2">
+      <p>S.T.A.L.K.E.R. 2</p>
+    </div>
+  </a>
+
+  <a href="/chivalry2">
+    <div class="game-card">
+      <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1824220/library_600x900_2x.jpg" alt="Chivalry 2">
+      <p>Chivalry 2</p>
+    </div>
+  </a>
+
+  <a href="/battlefield1">
+    <div class="game-card">
+      <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1238840/library_600x900_2x.jpg" alt="Battlefield 1">
+      <p>Battlefield™ 1</p>
+    </div>
+  </a>
+
+  <a href="/hoi4">
+    <div class="game-card">
+      <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/394360/library_600x900_2x.jpg" alt="Hearts of Iron IV">
+      <p>Hearts of Iron IV</p>
+    </div>
+  </a>
+
+  <a href="/warthunder">
+    <div class="game-card">
+      <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/236390/library_600x900_2x.jpg" alt="War Thunder">
+      <p>War Thunder</p>
+    </div>
+  </a>
+
+
+  <a href="/cyberpunk2077">
+    <div class="game-card">
+      <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/library_600x900_2x.jpg" alt="Cyberpunk 2077">
+      <p>Cyberpunk 2077</p>
+    </div>
+  </a>
+
+  <a href="/hogwarts">
+    <div class="game-card">
+      <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/990080/library_600x900_2x.jpg" alt="Hogwarts Legacy">
+      <p>Hogwarts Legacy</p>
+    </div>
+  </a>
+
+  <a href="/buckshotroulette">
+    <div class="game-card">
+      <img src="https://steamcdn-a.akamaihd.net/steam/apps/2835570/library_600x900_2x.jpg" alt="Buckshot Roulette">
+      <p>Buckshot Roulette</p>
+    </div>
+  </a>
+
+  <a href="/Skyrim5">
+    <div class="game-card">
+      <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/489830/library_600x900.jpg" alt="The Elder Scrolls V Skyrim Special Edition">
+      <p>The Elder Scrolls V Skyrim Special Edition</p>
+    </div>
+  </a>
+
+  <a href="/witcher3">
+    <div class="game-card">
+      <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/292030/library_600x900.jpg" alt="The Witcher 3: Wild Hunt">
+      <p>The Witcher 3: Wild Hunt</p>
+    </div>
+  </a>
+
+  <a href="/squad">
+    <div class="game-card">
+      <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/393380/library_600x900.jpg" alt="Squad">
+      <p>Squad</p>
+    </div>
+  </a>
+
+  <a href="/silenthill2">
+    <div class="game-card">
+      <img src="https://steamcdn-a.akamaihd.net/steam/apps/2124490/library_600x900_2x.jpg" alt="SILENT HILL 2">
+      <p>SILENT HILL 2</p>
+    </div>
+  </a>
+
+  <a href="/Choice of Life">
+    <div class="game-card">
+      <img src="https://store-images.s-microsoft.com/image/apps.26858.13655823568209713.205be746-1f84-4208-beb9-b2852440cb2f.b1a1825b-ac5b-4386-a145-aa75144f043a" alt="Choice of Life: Middle Ages">
+      <p>Choice of Life: Middle Ages</p>
+    </div>
+  </a>
+
+  <a href="/darkanddarker">
+    <div class="game-card">
+      <img src="https://steamcdn-a.akamaihd.net/steam/apps/2016590/library_600x900.jpg" alt="Dark and Darker">
+      <p>Dark and Darker</p>
+    </div>
+  </a>
+
+</main>
+
+
+</body>
+</html>
