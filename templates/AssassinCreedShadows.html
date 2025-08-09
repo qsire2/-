@@ -71,6 +71,7 @@
       border-radius: 10px;
       transition: transform 0.3s;
       box-shadow: 0 0 8px rgba(0,0,0,0.6);
+      cursor: pointer;
     }
 
     .screenshots img:hover {
@@ -89,6 +90,39 @@
     .back-link:hover {
       color: #84c9ff;
       text-decoration: underline;
+    }
+
+    /* Стилі для лайтбокса (додано для збільшення зображень) */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
     }
 
     @media (max-width: 768px) {
@@ -126,11 +160,43 @@
     </div>
 
     <div class="screenshots">
-      <img src="https://itc.ua/wp-content/uploads/2025/03/ss_457490ebdc84023270e19aeec4ddc220c00abd41.1920x1080.jpg" alt="Screenshot 1">
-      <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3159330/dbadf23ede7af4684012bab610ffb52f33fdb9e2/ss_dbadf23ede7af4684012bab610ffb52f33fdb9e2.1920x1080.jpg?t=1752627526" alt="Screenshot 2">
-      <img src="https://preview.redd.it/new-assassins-creed-shadows-screenshot-v0-yaxgu4ux691d1.jpeg?auto=webp&s=60afa11587a43caada022a6d4ed1e76a1c686eeb" alt="Screenshot 3">
+      <img src="https://itc.ua/wp-content/uploads/2025/03/ss_457490ebdc84023270e19aeec4ddc220c00abd41.1920x1080.jpg" alt="Screenshot 1" onclick="openLightbox(this)">
+      <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3159330/dbadf23ede7af4684012bab610ffb52f33fdb9e2/ss_dbadf23ede7af4684012bab610ffb52f33fdb9e2.1920x1080.jpg?t=1752627526" alt="Screenshot 2" onclick="openLightbox(this)">
+      <img src="https://preview.redd.it/new-assassins-creed-shadows-screenshot-v0-yaxgu4ux691d1.jpeg?auto=webp&s=60afa11587a43caada022a6d4ed1e76a1c686eeb" alt="Screenshot 3" onclick="openLightbox(this)">
     </div>
   </main>
+
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    function openLightbox(img) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      
+      lightbox.classList.add('active');
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+  </script>
 
 </body>
 </html>

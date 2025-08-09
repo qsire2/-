@@ -92,6 +92,38 @@
       text-decoration: underline;
     }
 
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+    }
+
     @media (max-width: 768px) {
       .content {
         flex-direction: column;
@@ -127,11 +159,43 @@
     </div>
 
     <div class="screenshots">
-      <img src="https://www.silenthillmemories.net/sh2_remake/screenshots/pics/silent_hill_2_remake_09.jpg" alt="Screenshot 1">
-      <img src="https://i.playground.ru/e/xnmv6XzdOPrcmNkiD2OEMw.jpeg" alt="Screenshot 2">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPPcNnT1Ddt1a3uFEVyS4FLrSMs4w0_Cbmeg&s" alt="Screenshot 3">
+      <img src="https://www.silenthillmemories.net/sh2_remake/screenshots/pics/silent_hill_2_remake_09.jpg" alt="Screenshot 1" onclick="openLightbox(this)">
+      <img src="https://i.playground.ru/e/xnmv6XzdOPrcmNkiD2OEMw.jpeg" alt="Screenshot 2" onclick="openLightbox(this)">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPPcNnT1Ddt1a3uFEVyS4FLrSMs4w0_Cbmeg&s" alt="Screenshot 3" onclick="openLightbox(this)">
     </div>
   </main>
+
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    function openLightbox(img) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+
+      lightbox.classList.add('active');
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+  </script>
 
 </body>
 </html>

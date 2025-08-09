@@ -91,6 +91,38 @@
       text-decoration: underline;
     }
 
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+    }
+
     @media (max-width: 768px) {
       .content {
         flex-direction: column;
@@ -126,11 +158,43 @@
     </div>
 
     <div class="screenshots">
-      <img src="https://gagadget.com/media/post_big/188119-463388-463385.jpg" alt="Screenshot 1">
-      <img src="https://i.redd.it/kingdom-come-deliverance-2-pc-4k-ultra-screenshots-from-my-v0-mynqxaj487ce1.png?width=2560&format=png&auto=webp&s=1ec52b10b24aa76c8879fdb13d6262c915b70c03" alt="Screenshot 2">
-      <img src="https://www.charlieintel.com/cdn-image/wp-content/uploads/2024/04/19/Kingdom-Come-Deliverance-2.jpg?width=1200&quality=60&format=auto" alt="Screenshot 3">
+      <img src="https://gagadget.com/media/post_big/188119-463388-463385.jpg" alt="Screenshot 1" onclick="openLightbox(this)">
+      <img src="https://i.redd.it/kingdom-come-deliverance-2-pc-4k-ultra-screenshots-from-my-v0-mynqxaj487ce1.png?width=2560&format=png&auto=webp&s=1ec52b10b24aa76c8879fdb13d6262c915b70c03" alt="Screenshot 2" onclick="openLightbox(this)">
+      <img src="https://www.charlieintel.com/cdn-image/wp-content/uploads/2024/04/19/Kingdom-Come-Deliverance-2.jpg?width=1200&quality=60&format=auto" alt="Screenshot 3" onclick="openLightbox(this)">
     </div>
   </main>
+
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    function openLightbox(img) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+
+      lightbox.classList.add('active');
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+  </script>
 
 </body>
 </html>

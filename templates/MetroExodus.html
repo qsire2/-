@@ -91,6 +91,38 @@
       text-decoration: underline;
     }
 
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+    }
+
     @media (max-width: 768px) {
       .content {
         flex-direction: column;
@@ -126,11 +158,43 @@
     </div>
 
     <div class="screenshots">
-      <img src="https://i.playground.ru/e/ZE1BchymUaPzH2M71Xs-XQ.jpeg" alt="Screenshot 1">
-      <img src="https://gameguru.ru/media/screenshot/45659/Metro_Exodus_Screen_1.jpg" alt="Screenshot 2">
-      <img src="https://i.redd.it/screenshots-are-super-white-washed-for-exodus-any-solution-v0-yv68x6idg5na1.jpg?width=2560&format=pjpg&auto=webp&s=c8932f5cbc8275163b5727c39a9068bfb55230aa" alt="Screenshot 3">
+      <img src="https://i.playground.ru/e/ZE1BchymUaPzH2M71Xs-XQ.jpeg" alt="Screenshot 1" onclick="openLightbox(this)">
+      <img src="https://gameguru.ru/media/screenshot/45659/Metro_Exodus_Screen_1.jpg" alt="Screenshot 2" onclick="openLightbox(this)">
+      <img src="https://i.redd.it/screenshots-are-super-white-washed-for-exodus-any-solution-v0-yv68x6idg5na1.jpg?width=2560&format=pjpg&auto=webp&s=c8932f5cbc8275163b5727c39a9068bfb55230aa" alt="Screenshot 3" onclick="openLightbox(this)">
     </div>
   </main>
+
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    function openLightbox(img) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+
+      lightbox.classList.add('active');
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+  </script>
 
 </body>
 </html>
